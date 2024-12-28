@@ -9,22 +9,29 @@
             height: 100%;
             margin: 0;
             font-family: Arial, sans-serif;
+            box-sizing: border-box;
+            overflow: auto;
+        }
+
+        *, *::before, *::after {
+            box-sizing: inherit;
         }
 
         .form-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100%;
+            padding: 20px;
+            min-height: 100%;
         }
 
         form {
             background-color: #f9f9f9;
-            padding: 30px;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 600px;  
+            width: calc(100% - 40px);
+            max-width: 500px;
         }
 
         label.required:after {
@@ -33,7 +40,7 @@
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .form-group label {
@@ -42,14 +49,14 @@
 
         .form-group input, .form-group select, .form-group textarea {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
 
         button {
-            padding: 10px 20px;
+            padding: 10px;
             background-color: #4CAF50;
             color: white;
             border: none;
@@ -71,16 +78,14 @@
         h1 {
             text-align: center;
             margin-bottom: 20px;
+            font-size: 24px;
         }
     </style>
 </head>
 <body>
-
     <div class="form-container">
         <form method="post">
             {% csrf_token %}
-            
-            <!-- Display errors -->
             {% if form.errors %}
                 <div class="errors">
                     <ul>
@@ -92,77 +97,61 @@
                     </ul>
                 </div>
             {% endif %}
-
             <h1>Car Enquiry Form</h1>
-
             <div class="form-group">
                 <label class="required" for="{{ form.car_brand.id_for_label }}">{{ form.car_brand.label }}</label>
                 {{ form.car_brand }}
             </div>
-
             <div class="form-group">
                 <label class="required" for="{{ form.car_model.id_for_label }}">{{ form.car_model.label }}</label>
                 {{ form.car_model }}
             </div>
-
             <div class="form-group">
                 <label class="required" for="{{ form.car_year.id_for_label }}">{{ form.car_year.label }}</label>
                 {{ form.car_year }}
             </div>
-
             <div class="form-group">
                 <label class="required" for="{{ form.car_variant.id_for_label }}">{{ form.car_variant.label }}</label>
                 {{ form.car_variant }}
             </div>
-
             <div class="form-group">
                 <label class="required" for="{{ form.city.id_for_label }}">{{ form.city.label }}</label>
                 {{ form.city }}
             </div>
-
             <div class="form-group">
                 <label class="required" for="{{ form.state.id_for_label }}">{{ form.state.label }}</label>
                 {{ form.state }}
             </div>
-
             <div class="form-group">
                 <label class="required" for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
                 {{ form.first_name }}
             </div>
-
             <div class="form-group">
                 <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
                 {{ form.last_name }}
             </div>
-
             <div class="form-group">
                 <label class="required" for="{{ form.mobile_number.id_for_label }}">{{ form.mobile_number.label }}</label>
                 {{ form.mobile_number }}
             </div>
-
             <div class="form-group">
                 <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
                 {{ form.email }}
             </div>
-
             <div class="form-group">
                 <label class="required" for="{{ form.preferred_contact_method.id_for_label }}">{{ form.preferred_contact_method.label }}</label>
                 {{ form.preferred_contact_method }}
             </div>
-
             <div class="form-group">
                 <label for="{{ form.enquiry_message.id_for_label }}">{{ form.enquiry_message.label }}</label>
                 {{ form.enquiry_message }}
             </div>
-
             <div class="form-group">
                 <label for="{{ form.test_drive_request.id_for_label }}">{{ form.test_drive_request.label }}</label>
                 {{ form.test_drive_request }}
             </div>
-
             <button type="submit">Submit</button>
         </form>
     </div>
-
 </body>
 </html>
